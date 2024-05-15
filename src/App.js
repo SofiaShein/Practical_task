@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import SingleTodo from './components/SingleTodo';
+import Todos from "./components/Todos";
+import { Container } from "react-bootstrap";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Todos />,
+  },
+  {
+    path: "/todo/:todoId",
+    element: <SingleTodo />,
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className='bg-white p-3' style={{ maxWidth: '960px' }}>
+      <RouterProvider router={router} />
+    </Container>
   );
 }
-
 export default App;
